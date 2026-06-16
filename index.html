@@ -1,201 +1,869 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Portfolio - Serigne Mbacké Camara</title>
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serigne Mbacké Camara — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body{
-            background:#fff3e0;
-            color:#4a2b0f;
-        }
+    :root {
+      --bleu:    #0D1B2A;
+      --or:      #C9933A;
+      --or-clair:#E8B86D;
+      --sable:   #F2E8D9;
+      --perle:   #E8E4DF;
+      --blanc:   #FAFAF8;
+      --texte:   #1A2B3C;
+      --gris:    #6B7C8D;
+    }
 
-        header{
-            background: linear-gradient(135deg, #ff8a65, #ffb74d);
-            color:white;
-            text-align:center;
-            padding:40px 20px;
-        }
+    html { scroll-behavior: smooth; }
 
-        header img{
-            width:180px;
-            height:180px;
-            border-radius:50%;
-            object-fit:cover;
-            border:4px solid rgba(255,255,255,0.75);
-            display:block;
-            margin:0 auto 20px;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--blanc);
+      color: var(--texte);
+      line-height: 1.6;
+    }
 
-        nav{
-            background:#d84315;
-            padding:15px;
-            text-align:center;
-            box-shadow:0 4px 10px rgba(0,0,0,0.1);
-        }
+    /* ── NAVIGATION ─────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(13, 27, 42, 0.96);
+      backdrop-filter: blur(8px);
+    }
 
-        nav a{
-            color:white;
-            text-decoration:none;
-            margin:0 15px;
-            font-weight:600;
-        }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--or);
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+    }
 
-        nav a:hover{
-            text-decoration:underline;
-        }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--perle);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--or); }
 
-        section{
-            max-width:1000px;
-            margin:30px auto;
-            padding:25px;
-            background:#fff8f0;
-            border-radius:16px;
-            box-shadow:0 10px 25px rgba(0,0,0,0.08);
-        }
+    /* ── HERO ────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background: var(--bleu);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 0;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
 
-        h2{
-            color:#d84315;
-            margin-bottom:15px;
-        }
+    /* Ligne dorée décorative en fond */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      width: 1px; height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--or) 30%, var(--or) 70%, transparent);
+      opacity: 0.15;
+    }
 
-        h3{
-            color:#a13900;
-            margin-bottom:8px;
-        }
+    /* Cercle ambiant */
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: -30%; right: -15%;
+      width: 650px; height: 650px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,147,58,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
 
-        .projet{
-            margin-bottom:20px;
-        }
+    .hero-text {
+      padding: 5rem 4rem 5rem 6rem;
+      position: relative; z-index: 1;
+    }
 
-        ul{
-            list-style:none;
-            padding-left:0;
-        }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block; width: 40px; height: 1px;
+      background: var(--or);
+    }
 
-        ul li{
-            background: rgba(255,138,101,0.14);
-            margin-bottom:10px;
-            padding:12px 14px;
-            border-radius:10px;
-            color:#6d2b0d;
-        }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      color: var(--blanc);
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--or-clair);
+    }
 
-        .image-place{
-            display:flex;
-            justify-content:center;
-            margin-top:20px;
-        }
+    .hero-title {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--gris);
+      letter-spacing: 0.04em;
+      margin-bottom: 2rem;
+    }
 
-        .image-place div{
-            width:220px;
-            height:220px;
-            border-radius:24px;
-            background: linear-gradient(135deg, #ffb74d, #ff8a65);
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            color:white;
-            font-weight:700;
-            box-shadow:0 10px 20px rgba(0,0,0,0.12);
-        }
+    .hero-desc {
+      font-size: 0.95rem;
+      color: #8DA0B4;
+      max-width: 38ch;
+      line-height: 1.8;
+      margin-bottom: 2.8rem;
+    }
 
-        footer{
-            text-align:center;
-            background:#d84315;
-            color:white;
-            padding:20px;
-            margin-top:20px;
-        }
+    .btn-primary {
+      display: inline-block;
+      padding: 0.9rem 2.4rem;
+      background: var(--or);
+      color: var(--bleu);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--or-clair); transform: translateY(-2px); }
 
-        @media (max-width:768px){
-            header img{
-                width:140px;
-                height:140px;
-            }
-            nav a{
-                display:block;
-                margin:10px 0;
-            }
-        }
-    </style>
+    .btn-outline {
+      display: inline-block;
+      padding: 0.9rem 2.4rem;
+      border: 1px solid rgba(201,147,58,0.5);
+      color: var(--or);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-left: 1rem;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .btn-outline:hover { border-color: var(--or); color: var(--or-clair); }
+
+    /* Photo hero */
+    .hero-photo-col {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      padding: 4rem 5rem 0 2rem;
+      position: relative; z-index: 1;
+      height: 100%;
+    }
+
+    .photo-wrapper {
+      position: relative;
+      width: 340px;
+    }
+
+    .photo-frame {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, #1A2B3C 0%, #0A1520 100%);
+      position: relative;
+      overflow: hidden;
+      /* Cadre décalé doré */
+    }
+    .photo-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(201,147,58,0.3);
+      pointer-events: none;
+      z-index: 2;
+    }
+    /* Décalage décoratif */
+    .photo-wrapper::after {
+      content: '';
+      position: absolute;
+      bottom: -16px; right: -16px;
+      width: 100%; height: 100%;
+      border: 2px solid var(--or);
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .photo-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(10%) contrast(1.05);
+    }
+
+    /* Placeholder photo */
+    .photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.8rem;
+      color: rgba(201,147,58,0.5);
+    }
+    .photo-placeholder svg { width: 60px; height: 60px; opacity: 0.4; }
+    .photo-placeholder span {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(201,147,58,0.4);
+    }
+
+    .photo-badge {
+      position: absolute;
+      top: 1.5rem; left: -2rem;
+      background: var(--or);
+      color: var(--bleu);
+      padding: 0.5rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      z-index: 3;
+    }
+
+    /* ── SECTION COMMUNE ─────────────────────────── */
+    section { padding: 7rem 6rem; }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: var(--bleu);
+      line-height: 1.2;
+      margin-bottom: 2rem;
+    }
+
+    .divider {
+      width: 50px; height: 2px;
+      background: var(--or);
+      margin-bottom: 3rem;
+    }
+
+    /* ── À PROPOS ─────────────────────────────────── */
+    #apropos {
+      background: var(--sable);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .apropos-text p {
+      font-size: 0.97rem;
+      color: #3D5166;
+      line-height: 1.9;
+      margin-bottom: 1.2rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .stat-card {
+      background: var(--blanc);
+      padding: 1.8rem;
+      border-left: 3px solid var(--or);
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      color: var(--bleu);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--gris);
+      margin-top: 0.3rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── COMPÉTENCES ──────────────────────────────── */
+    #competences {
+      background: var(--bleu);
+      color: var(--blanc);
+    }
+
+    #competences .section-title { color: var(--blanc); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .skill-card {
+      padding: 2rem;
+      border: 1px solid rgba(201,147,58,0.15);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .skill-card:hover {
+      border-color: var(--or);
+      background: rgba(201,147,58,0.05);
+    }
+
+    .skill-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .skill-name {
+      font-weight: 600;
+      font-size: 0.92rem;
+      margin-bottom: 0.6rem;
+      color: var(--or-clair);
+      letter-spacing: 0.04em;
+    }
+
+    .skill-desc {
+      font-size: 0.85rem;
+      color: #6B8099;
+      line-height: 1.7;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      padding: 0.25rem 0.7rem;
+      border: 1px solid rgba(201,147,58,0.3);
+      color: rgba(201,147,58,0.7);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── EXPÉRIENCES ─────────────────────────────── */
+    #experience { background: var(--blanc); }
+
+    .timeline { position: relative; padding-left: 2.5rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--or), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 3rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.5rem;
+      top: 0.4rem;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--or);
+      border: 2px solid var(--blanc);
+      box-shadow: 0 0 0 3px rgba(201,147,58,0.25);
+    }
+
+    .timeline-date {
+      font-size: 0.73rem;
+      color: var(--or);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-role {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--bleu);
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-company {
+      font-size: 0.85rem;
+      color: var(--gris);
+      margin-bottom: 0.8rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.88rem;
+      color: #4A6072;
+      line-height: 1.8;
+    }
+
+    /* ── PROJETS ──────────────────────────────────── */
+    #projets { background: var(--perle); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--blanc);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .project-card:hover { transform: translateY(-6px); }
+
+    .project-img {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-img-bg {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      transition: transform 0.4s;
+    }
+    .project-card:hover .project-img-bg { transform: scale(1.06); }
+
+    .bg-1 { background: linear-gradient(135deg, #0D1B2A 0%, #1E3A5F 100%); }
+    .bg-2 { background: linear-gradient(135deg, #2D1B00 0%, #5C3D00 100%); }
+    .bg-3 { background: linear-gradient(135deg, #0A2E1A 0%, #1A5C35 100%); }
+
+    .project-label {
+      position: absolute;
+      top: 1rem; left: 1rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      background: var(--or);
+      color: var(--bleu);
+    }
+
+    .project-body { padding: 1.8rem; }
+
+    .project-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--bleu);
+      margin-bottom: 0.6rem;
+    }
+
+    .project-desc {
+      font-size: 0.83rem;
+      color: var(--gris);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-link {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--or);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 0.4rem;
+      transition: gap 0.2s;
+    }
+    .project-link:hover { gap: 0.8rem; }
+
+    /* ── CONTACT ──────────────────────────────────── */
+    #contact {
+      background: var(--bleu);
+      text-align: center;
+    }
+
+    #contact .section-title { color: var(--blanc); }
+    #contact .divider { margin: 0 auto 2rem; }
+
+    .contact-intro {
+      font-size: 0.97rem;
+      color: #6B8099;
+      max-width: 45ch;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+    }
+
+    .contact-grid {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .contact-icon {
+      width: 48px; height: 48px;
+      border: 1px solid rgba(201,147,58,0.3);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--or);
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      transition: background 0.3s;
+    }
+    .contact-item:hover .contact-icon { background: rgba(201,147,58,0.1); }
+
+    .contact-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #4A6072;
+    }
+
+    .contact-value {
+      font-size: 0.88rem;
+      color: var(--perle);
+    }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    footer {
+      background: #07111C;
+      padding: 1.8rem 6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      color: rgba(201,147,58,0.6);
+      font-size: 0.9rem;
+    }
+
+    .footer-copy {
+      font-size: 0.73rem;
+      color: #2A3D50;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── ANIMATIONS ──────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+
+      #hero { grid-template-columns: 1fr; padding: 120px 2rem 3rem; }
+      .hero-text { padding: 0; }
+      .hero-photo-col { padding: 3rem 0 0; justify-content: flex-start; }
+      .photo-wrapper { width: 260px; }
+
+      section { padding: 4rem 1.8rem; }
+      #apropos, .skills-grid, .projects-grid { grid-template-columns: 1fr; gap: 2rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up { opacity: 1; transform: none; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <img src="c:\Users\HP 840 G6\Downloads\photo.jpeg" alt="">
-    <h1>Serigne Mbacké Camara</h1>
-    <p>Étudiant en Informatique Appliquée | Développeur Web</p>
-</header>
-
-<nav>
-    <a href="#apropos">À propos</a>
-    <a href="#competences">Compétences</a>
-    <a href="#projets">Projets</a>
-    <a href="#image">Image</a>
-    <a href="#contact">Contact</a>
-</nav>
-
-<section id="apropos">
-    <h2>À propos de moi</h2>
-    <p>
-        Je suis Serigne Mbacké Camara, étudiant en deuxième année
-        d'Informatique Appliquée à la Gestion des Entreprises.
-        Passionné par le développement web et les technologies
-        informatiques, je développe des applications web modernes
-        en utilisant différents langages de programmation.
-    </p>
-</section>
-
-<section id="competences">
-    <h2>Compétences</h2>
-    <ul>
-        <li>HTML5 / CSS3</li>
-        <li>JavaScript</li>
-        <li>PHP</li>
-        <li>Python</li>
-        <li>Java</li>
-        <li>MySQL</li>
-        <li>Linux (Ubuntu/Debian)</li>
-        <li>Git & GitHub</li>
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">SMC</a>
+    <ul class="nav-links">
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#experience">Parcours</a></li>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-</section>
+  </nav>
 
-<section id="projets">
-    <h2>Mes Projets</h2>
-
-    <div class="projet">
-        <h3>Système de gestion des élèves</h3>
-        <p>Application PHP/MySQL permettant l'ajout, la modification et la suppression d'élèves.</p>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-text fade-up">
+      <p class="hero-eyebrow">Portfolio professionnel</p>
+      <h1 class="hero-name">Serigne<br>Mbacké<br><em>Camara</em></h1>
+      <p class="hero-title">Développeur & Designer créatif</p>
+      <p class="hero-desc">
+        Passionné par la création d'expériences numériques mémorables, 
+        je conçois des solutions qui allient esthétique et performance.
+      </p>
+      <a href="#projets" class="btn-primary">Voir mes projets</a>
+      <a href="#contact" class="btn-outline">Me contacter</a>
     </div>
 
-    <div class="projet">
-        <h3>Site de réservation de tickets</h3>
-        <p>Projet académique de développement d'un site web de réservation en ligne.</p>
+    <div class="hero-photo-col">
+      <div class="photo-wrapper">
+        <span class="photo-badge">Disponible</span>
+        <div class="photo-frame">
+          <!-- Remplacez le bloc ci-dessous par : <img src="votre-photo.jpg" alt="Serigne Mbacké Camara"> -->
+          <div class="photo-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+              <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+            </svg>
+            <span>Votre photo ici</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- À PROPOS -->
+  <section id="apropos">
+    <div class="apropos-text fade-up">
+      <p class="section-label">À propos de moi</p>
+      <h2 class="section-title">Créer avec<br>intention & précision</h2>
+      <div class="divider"></div>
+      <p>
+        Diplômé en informatique, je suis spécialisé dans le développement web 
+        et la conception d'interfaces utilisateur. Mon approche allie rigueur 
+        technique et sensibilité créative pour produire des projets qui ont du sens.
+      </p>
+      <p>
+        Basé à Dakar, j'interviens sur des projets locaux et internationaux, 
+        avec une conviction forte : chaque solution digitale doit être utile, 
+        belle et accessible.
+      </p>
     </div>
 
-    <div class="projet">
-        <h3>Administration Linux</h3>
-        <p>Mise en place de serveurs Ubuntu, Apache, Samba et gestion des utilisateurs.</p>
+    <div class="stats-grid fade-up">
+      <div class="stat-card">
+        <div class="stat-number">5+</div>
+        <div class="stat-label">Années d'expérience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">30+</div>
+        <div class="stat-label">Projets livrés</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">15</div>
+        <div class="stat-label">Clients satisfaits</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Prix obtenus</div>
+      </div>
     </div>
-</section>
+  </section>
 
-<section id="contact">
-    <h2>Contact</h2>
-    <p>Email : serignembac2006@gmail.com</p>
-    <p>GitHub : HUNTER-maker-hue.com/votre-profil</p>
-    <p>Téléphone : +221 77 499 27 45</p>
-</section>
+  <!-- COMPÉTENCES -->
+  <section id="competences">
+    <p class="section-label">Expertises</p>
+    <h2 class="section-title">Mes compétences</h2>
+    <div class="divider"></div>
 
-<footer>
-    <p>&copy; 2026 Serigne Mbacké Camara - Tous droits réservés</p>
-</footer>
+    <div class="skills-grid">
+      <div class="skill-card fade-up">
+        <div class="skill-icon">⚡</div>
+        <div class="skill-name">Développement Front-End</div>
+        <div class="skill-desc">Création d'interfaces réactives, performantes et accessibles.</div>
+        <div class="skill-tags">
+          <span class="tag">HTML / CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">React</span>
+          <span class="tag">Vue.js</span>
+        </div>
+      </div>
 
+      <div class="skill-card fade-up">
+        <div class="skill-icon">🛠</div>
+        <div class="skill-name">Développement Back-End</div>
+        <div class="skill-desc">Architecture robuste d'API et de services serveur évolutifs.</div>
+        <div class="skill-tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+          <span class="tag">REST API</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-up">
+        <div class="skill-icon">🎨</div>
+        <div class="skill-name">UI / UX Design</div>
+        <div class="skill-desc">Conception centrée utilisateur, de la recherche au prototype.</div>
+        <div class="skill-tags">
+          <span class="tag">Figma</span>
+          <span class="tag">Design System</span>
+          <span class="tag">Wireframing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPÉRIENCES -->
+  <section id="experience">
+    <p class="section-label">Parcours</p>
+    <h2 class="section-title">Expérience<br>professionnelle</h2>
+    <div class="divider"></div>
+
+    <div class="timeline">
+      <div class="timeline-item fade-up">
+        <div class="timeline-date">2022 — Présent</div>
+        <div class="timeline-role">Lead Developer & Designer</div>
+        <div class="timeline-company">Agence Créative — Dakar</div>
+        <div class="timeline-desc">Conception et développement de plateformes web pour des clients nationaux et internationaux. Management d'une équipe de 4 développeurs.</div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-date">2020 — 2022</div>
+        <div class="timeline-role">Développeur Web Full-Stack</div>
+        <div class="timeline-company">StartUp Tech — Dakar</div>
+        <div class="timeline-desc">Développement de fonctionnalités critiques d'une application SaaS B2B utilisée par +5 000 utilisateurs mensuels.</div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="timeline-date">2019 — 2020</div>
+        <div class="timeline-role">Développeur Front-End Junior</div>
+        <div class="timeline-company">Freelance</div>
+        <div class="timeline-desc">Réalisation de sites web pour PME locales, spécialisation en performance et optimisation mobile.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJETS -->
+  <section id="projets">
+    <p class="section-label">Réalisations</p>
+    <h2 class="section-title">Projets récents</h2>
+    <div class="divider"></div>
+
+    <div class="projects-grid">
+      <div class="project-card fade-up">
+        <div class="project-img">
+          <div class="project-img-bg bg-1">🌐</div>
+          <span class="project-label">Web App</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Plateforme E-commerce</div>
+          <div class="project-desc">Solution complète de vente en ligne avec tableau de bord analytique et gestion des stocks en temps réel.</div>
+          <a href="#" class="project-link">Voir le projet →</a>
+        </div>
+      </div>
+
+      <div class="project-card fade-up">
+        <div class="project-img">
+          <div class="project-img-bg bg-2">📱</div>
+          <span class="project-label">Mobile</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">App de Livraison</div>
+          <div class="project-desc">Application mobile cross-platform pour la mise en relation livreurs et clients, avec géolocalisation en direct.</div>
+          <a href="#" class="project-link">Voir le projet →</a>
+        </div>
+      </div>
+
+      <div class="project-card fade-up">
+        <div class="project-img">
+          <div class="project-img-bg bg-3">🎯</div>
+          <span class="project-label">Design</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Identité Visuelle</div>
+          <div class="project-desc">Refonte complète de l'identité digitale d'une ONG, incluant charte graphique et site web responsive.</div>
+          <a href="#" class="project-link">Voir le projet →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Travaillons ensemble</h2>
+    <div class="divider"></div>
+    <p class="contact-intro">
+      Un projet en tête ? Une collaboration à explorer ? 
+      N'hésitez pas à me contacter, je réponds sous 48h.
+    </p>
+
+    <div class="contact-grid">
+      <div class="contact-item fade-up">
+        <div class="contact-icon">✉</div>
+        <span class="contact-label">Email</span>
+        <span class="contact-value">serigne@email.com</span>
+      </div>
+      <div class="contact-item fade-up">
+        <div class="contact-icon">📞</div>
+        <span class="contact-label">Téléphone</span>
+        <span class="contact-value">+221 XX XXX XX XX</span>
+      </div>
+      <div class="contact-item fade-up">
+        <div class="contact-icon">📍</div>
+        <span class="contact-label">Localisation</span>
+        <span class="contact-value">Dakar, Sénégal</span>
+      </div>
+      <div class="contact-item fade-up">
+        <div class="contact-icon">💼</div>
+        <span class="contact-label">LinkedIn</span>
+        <span class="contact-value">in/serigne-camara</span>
+      </div>
+    </div>
+
+    <a href="mailto:serigne@email.com" class="btn-primary">Envoyer un message</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-name">Serigne Mbacké Camara</span>
+    <span class="footer-copy">© 2025 — Tous droits réservés</span>
+  </footer>
+
+  <!-- SCROLL ANIMATIONS -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
